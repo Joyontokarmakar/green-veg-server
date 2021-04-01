@@ -27,7 +27,7 @@ client.connect(err => {
   const productsCollection = client.db(`${process.env.DB_NAME}`).collection("products");
   const usersCollection = client.db(`${process.env.DB_NAME}`).collection("users");
 
-  app.get('/events', (req, res)=> {
+  app.get('/products', (req, res)=> {
     productsCollection.find({})
     .toArray((err, document)=> {
       res.send(document)
