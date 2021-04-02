@@ -28,6 +28,7 @@ client.connect(err => {
   const productsCollection = client.db(`${process.env.DB_NAME}`).collection("products");
   const usersCollection = client.db(`${process.env.DB_NAME}`).collection("users");
 
+  // add product
   app.get('/products', (req, res)=> {
     productsCollection.find({})
     .toArray((err, document)=> {
@@ -35,6 +36,7 @@ client.connect(err => {
     })
   })
 
+  // single product show
   app.get('/singleProduct/:id', (req, res)=> {
     productsCollection.find({_id: objectId(req.params.id)})
     .toArray((err, document)=> {
@@ -42,6 +44,30 @@ client.connect(err => {
     })
   })
 
+  // update product
+  app.patch('/update/:id', (req,res) => {
+    productsCollection.updateOne({_id: objectId(req.params.id)},
+    {
+      $set: {
+        name: req.body.name,
+        price: req.body.price,
+        image: req.body.image
+      }
+    })
+    .then(result => {
+      res.send(result.modifiedCount > 0)
+    })
+})
+
+// delete product
+app.delete("/delete/:id", (req,res) => {
+  productCollection.deleteOne({_id: objectId(req.params.id)})
+  .then(result => {
+      res.send(result.deletedCount > 0)
+  })
+})
+
+// add product
   app.post('/addEvent', (req, res)=> {
     const eventDetails = req.body;
     productsCollection.insertOne(eventDetails)
