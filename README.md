@@ -1,9 +1,9 @@
 # Green Vegitable
-## This is the Server Side
+## This is the Server Side (Front-end)
 
 # Getting Started with Green Vegetable Web Application
 
-##My Website is Live on: [Ride Chai](https://veg-green.web.app/)
+##My Website is Live on: [Green Vegetable](https://veg-green.web.app/)
 
 ###### This is an project which made based on Ecommerce Website.
 
